@@ -1,0 +1,10 @@
+openai
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+python-multipart
+# pyjwt # Replaced by python-jose
+python-jose[cryptography]
+passlib[argon2]
+argon2-cffi

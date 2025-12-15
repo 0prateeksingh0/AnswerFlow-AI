@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    container_name: qa-server
+    ports:
+      - "8000:8000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./server:/app
+      - /app/venv # Prevent local venv from overriding container
+    restart: always
+
+  client:
+    build: ./client
+    container_name: qa-client
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      - server
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+      - /app/.next
+    restart: always

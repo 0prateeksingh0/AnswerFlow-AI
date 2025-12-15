@@ -1,0 +1,57 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-server:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        
+    - name: Install Dependencies
+      working-directory: ./server
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    # Add linting or tests here if available/desired
+    # - name: Run Tests
+    #   run: pytest
+
+  build-client:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: './client/package-lock.json'
+        
+    - name: Install Dependencies
+      working-directory: ./client
+      run: npm ci
+      
+    - name: Build
+      working-directory: ./client
+      run: npm run build
+
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: [build-server, build-client]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build Docker Images
+        run: docker-compose build
