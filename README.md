@@ -1,11 +1,11 @@
-# Real-Time Q&A Dashboard 🚀
+# Real-Time Q&A Dashboard 
 
 A modern, real-time Question & Answer platform featuring **live updates**, **AI-powered sentiment analysis**, and **smart answer suggestions**. built with **FastAPI**, **Next.js**, and **OpenAI**.
 
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
-## ✨ Features
+## Features
 
 - **Real-Time Capabilities**: Questions and answers appear instantly for all users via WebSockets.
 - **AI Integration**:
@@ -35,7 +35,7 @@ A modern, real-time Question & Answer platform featuring **live updates**, **AI-
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Docker & Docker Compose (Recommended)
@@ -87,7 +87,7 @@ npm run dev
 
 ---
 
-## 🔑 Default Credentials
+##  Default Credentials
 
 To access Admin features (AI Suggest, Status Management):
 
@@ -112,7 +112,7 @@ To access Admin features (AI Suggest, Status Management):
 └── README.md               # Project Documentation
 ```
 
-## 🧪 CI/CD
+##  CI/CD
 
 This project includes a **GitHub Actions** pipeline (`.github/workflows/ci.yml`) that runs on every push to `main`, verifying:
 - Backend dependency installation
